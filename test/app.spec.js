@@ -4,7 +4,7 @@ const knex = require('knex')
 const {expect} = require('chai')
 const helpers = require('./test-helpers')
 
-describe('Embroidery Stitches Endpoints', () => {
+describe('Embroidery GET Stitches Endpoints', () => {
   let db
   before('make knex instance', () => {
     db = knex({
@@ -44,6 +44,15 @@ describe('Embroidery Stitches Endpoints', () => {
         expect(res.body).to.have.lengthOf(3)
       })
     })
+    it('GET /api/stitches/stitch=query returns stitches that contain query', () => {
+      const stemStitch = 'stem stitch'
+      return supertest(app)
+      .get('/api/stitches?stitch=stemstitch')
+      .expect(200)
+      .expect(res=>{
+        expect(res.body[0].stitch_name).to.equal(stemStitch)
+      })
+    } )
   })
 
 })
