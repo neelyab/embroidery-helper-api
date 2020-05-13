@@ -19,11 +19,6 @@ describe('Embroidery GET Stitches Endpoints', () => {
   })
   afterEach('clean table', () => db.raw('TRUNCATE saved_projects, saved_stitches, embroidery_users, embroidery_stitches, embroidery_projects '))
   context('when no data is present in the tables', ()=>{
-    it('GET / responds with 200 containing "Hello boilerplate!"', () => {
-      return supertest(app)
-        .get('/')
-        .expect(200, 'Hello boilerplate!')
-    })
     it('GET /api/stitches returns 200 status and empty array when there is nothing int he database', () => {
       return supertest(app)
       .get('/api/stitches/')
@@ -31,7 +26,7 @@ describe('Embroidery GET Stitches Endpoints', () => {
     })
   })
   context('when data is present, GET /api/stitches', () => {
-    before('put array of stitches in the table', ()=>{
+    beforeEach('put array of stitches in the table', ()=>{
       const stitches = helpers.makeStitchesArray();
      return db.into('embroidery_stitches').insert(stitches)
     })
@@ -47,10 +42,12 @@ describe('Embroidery GET Stitches Endpoints', () => {
     it('GET /api/stitches/stitch=query returns stitches that contain query', () => {
       const stemStitch = 'stem stitch'
       return supertest(app)
-      .get('/api/stitches?stitch=stemstitch')
+      .get('/api/stitches/')
+      .query({stitch:'stem'})
       .expect(200)
-      .expect(res=>{
-        expect(res.body[0].stitch_name).to.equal(stemStitch)
+      .expect(res=> {
+        expect(res.body).to.have.lengthOf(1)
+        expect(res.body[0].stitch_name).to.eql(stemStitch)
       })
     } )
   })
