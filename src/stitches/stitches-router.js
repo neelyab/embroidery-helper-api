@@ -23,6 +23,15 @@ stitchesRouter
     .catch(next)
     }
 })
+stitchesRouter
+.route('/:id')
+.get((req, res, next) => {
+    const id = req.params.id
+    StitchesService.getById(req.app.get('db'), id)
+    .then(stitch=>{
+        return res.status(200).json(stitch)
+    })
+})
 
 
 module.exports = stitchesRouter;

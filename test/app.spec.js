@@ -49,7 +49,16 @@ describe('Embroidery GET Stitches Endpoints', () => {
         expect(res.body).to.have.lengthOf(1)
         expect(res.body[0].stitch_name).to.eql(stemStitch)
       })
-    } )
+    })
+    it('GET /api/stitches/:id returns stitch by id', () => {
+      const id = 1
+      return supertest(app)
+      .get(`/api/stitches/${id}`)
+      .expect(200)
+      .expect(res=> {
+        expect(res.body.id).to.equal(id)
+      })
+    })
   })
 
 })

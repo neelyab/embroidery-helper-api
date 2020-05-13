@@ -1,16 +1,16 @@
 function makeStitchesArray() {
       return [
-    {
+    {   id: 1,
         stitch_name: 'back stitch',
         image_url: 'www.google.com',
         stitch_description: 'instructions to make the stitch'
     }, 
-    {
+    {   id: 2,
         stitch_name: 'stem stitch',
         image_url: 'www.embroiderywebsite',
         stitch_description: 'instructions to make the stitch'
     },
-    {
+    {   id: 3,
         stitch_name: 'french knot',
         image_url: 'www.google.com',
         stitch_description: 'instructions to make the stitch'
