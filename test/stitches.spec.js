@@ -4,7 +4,7 @@ const knex = require('knex')
 const {expect} = require('chai')
 const helpers = require('./test-helpers')
 
-describe('Embroidery GET Stitches Endpoints', () => {
+describe('GET Embroidery Stitches Endpoints', () => {
   let db
   before('make knex instance', () => {
     db = knex({
@@ -58,6 +58,12 @@ describe('Embroidery GET Stitches Endpoints', () => {
       .expect(res=> {
         expect(res.body.id).to.equal(id)
       })
+    })
+    it('GET api/stitches/:id returns 400 not found when stitch does not exist', () => {
+      const id = 123
+      return supertest(app)
+      .get(`/api/stitches/${id}`)
+      .expect(400, {error:'stitch not found'})
     })
   })
 

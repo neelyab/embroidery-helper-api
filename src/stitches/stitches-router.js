@@ -1,7 +1,7 @@
 const express = require('express')
 const StitchesService = require('./stitches-service')
 const stitchesRouter = express.Router()
-const jsonBodyParser = express.json()
+const xss = require('xss')
 
 
 
@@ -28,7 +28,10 @@ stitchesRouter
 .get((req, res, next) => {
     const id = req.params.id
     StitchesService.getById(req.app.get('db'), id)
-    .then(stitch=>{
+    .then(stitch => {
+        if(!stitch){
+            return res.status(400).json({error:'stitch not found'})
+        }
         return res.status(200).json(stitch)
     })
 })

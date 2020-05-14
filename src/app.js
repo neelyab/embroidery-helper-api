@@ -4,6 +4,7 @@ const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV, CLIENT_ORIGIN } = require('./config')
 const stitchesRouter = require('./stitches/stitches-router')
+const projectsRouter = require('./projects/projects-router')
 
 const app = express()
 
@@ -19,7 +20,7 @@ app.use(cors({
 )
 
 app.use('/api/stitches', stitchesRouter)
-
+app.use('/api/projects', projectsRouter)
 // app.get('/', (req, res) => {
 //      res.status(200).send('Hello boilerplate!')
 //      })

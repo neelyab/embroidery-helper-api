@@ -21,21 +21,21 @@ function makeStitchesArray() {
 
 function makeProjectsArray() {
     return [
-        {
+        {   id: 1,
             project_name: 'lemon citrus',
             image_url: 'www.imageurl.com',
             project_description: 'description of the project',
             project_url: 'www.projecturl.com',
             stitches: 'back stitch, stem stitch, chain stitch'
         },
-        {
+        {   id: 2,
             project_name: 'rainbow pattern',
             image_url: 'www.imageurl.com',
             project_description: 'description of the project',
             project_url: 'www.projecturl.com',
             stitches: 'french knot, stem stitch, chain stitch'
         },
-        {
+        {   id: 3,
             project_name: 'clover flower',
             image_url: 'www.imageurl.com',
             project_description: 'description of the project',
