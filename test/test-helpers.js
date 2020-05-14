@@ -1,3 +1,5 @@
+const bcrypt = require('bcryptjs')
+
 function makeStitchesArray() {
       return [
     {   id: 1,
@@ -44,9 +46,49 @@ function makeProjectsArray() {
         }
     ]
 }
-
+function makeUsersArray() {
+    return [
+      {
+        id: 1,
+        username: 'test-user-1',
+        first_name: 'Test user 1',
+        user_password: 'password',
+        date_created: '2029-01-22T16:28:32.615Z',
+      },
+      {
+        id: 2,
+        username: 'test-user-2',
+        first_name: 'Test user 2',
+        user_password: 'password',
+        date_created: '2029-01-22T16:28:32.615Z',
+      },
+      {
+        id: 3,
+        username: 'test-user-3',
+        first_name: 'Test user 3',
+        user_password: 'password',
+        date_created: '2029-01-22T16:28:32.615Z',
+      },
+      {
+        id: 4,
+        username: 'test-user-4',
+        first_name: 'Test user 4',
+        user_password: 'password',
+        date_created: '2029-01-22T16:28:32.615Z',
+      },
+    ]
+  }
+  function seedUsers(db, users){
+    const preppedUsers = users.map(user=> ({
+      ...user,
+      user_password: bcrypt.hashSync(user.user_password, 1)
+    }))
+    return db.into('embroidery_users').insert(preppedUsers)
+  }
 
 module.exports = {
     makeProjectsArray,
-    makeStitchesArray
+    makeStitchesArray,
+    makeUsersArray,
+    seedUsers
 }

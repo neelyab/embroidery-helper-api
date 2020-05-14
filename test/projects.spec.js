@@ -3,7 +3,7 @@ const knex = require('knex')
 const {expect} = require('chai')
 const helpers = require('./test-helpers')
 
-describe.only('GET Embroidery Projects endpoints', () => {
+describe('GET Embroidery Projects endpoints', () => {
     let db
     before('make knex instance', () => {
       db = knex({
@@ -18,7 +18,7 @@ describe.only('GET Embroidery Projects endpoints', () => {
     })
     afterEach('clean table', () => db.raw('TRUNCATE saved_projects, saved_stitches, embroidery_users, embroidery_stitches, embroidery_projects '))
     context('when no data is present in the tables', ()=>{
-      it('GET /api/projects returns 200 status and empty array when there is nothing int he database', () => {
+      it('GET /api/projects returns 200 status and empty array when there is nothing in the database', () => {
         return supertest(app)
         .get('/api/projects/')
         .expect(200, [])
