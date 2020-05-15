@@ -1,9 +1,11 @@
 const express = require('express')
 const ProjectsService = require('./projects-service')
 const projectsRouter = express.Router()
+const requireAuth = require('../middleware/jwt-auth')
 
 projectsRouter
 .route('/')
+.all(requireAuth)
 .get((req, res, next) => {
     const stitch = req.query.stitch
     if(stitch){
@@ -20,6 +22,7 @@ projectsRouter
 
 projectsRouter
 .route('/:id')
+.all(requireAuth)
 .get((req, res) => {
     const id = req.params.id
     ProjectsService.getProjectById(req.app.get('db'), id)

@@ -1,12 +1,13 @@
 const express = require('express')
 const StitchesService = require('./stitches-service')
 const stitchesRouter = express.Router()
-
+const requireAuth = require('../middleware/jwt-auth')
 
 
 
 stitchesRouter
 .route('/')
+.all(requireAuth)
 .get((req, res, next) => {
     const stitch = req.query.stitch
     console.log(stitch)
@@ -25,6 +26,7 @@ stitchesRouter
 })
 stitchesRouter
 .route('/:id')
+.all(requireAuth)
 .get((req, res, next) => {
     const id = req.params.id
     StitchesService.getById(req.app.get('db'), id)

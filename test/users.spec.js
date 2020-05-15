@@ -6,7 +6,7 @@ const {expect} = require('chai')
 const usersArray = helpers.makeUsersArray()
 
 
-describe.only('user endpoints', () => {
+describe('user endpoints', () => {
     let db
     before('make knex instance', () =>{
         db = knex({
