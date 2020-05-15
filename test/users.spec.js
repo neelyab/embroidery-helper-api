@@ -16,12 +16,13 @@ describe.only('user endpoints', () => {
         app.set('db', db)
     })
     before('clean tables', () => {
-        db('embroidery_users').truncate()
+       return db.raw('TRUNCATE TABLE saved_stitches, saved_projects, embroidery_stitches, embroidery_projects, embroidery_users RESTART IDENTITY CASCADE')
     })
     afterEach('clean up tables', () => {
-        db.raw('TRUNCATE saved_projects, saved_stitches, embroidery_users, embroidery_stitches, embroidery_projects ')
+       return db.raw('TRUNCATE TABLE saved_stitches, saved_projects, embroidery_stitches, embroidery_projects, embroidery_users RESTART IDENTITY CASCADE')
     })
-    context('POST /users missing fields returns status 400', () => {
+    describe('user registration field requirements', () => {
+        context('POST /users missing fields returns status 400', () => {
             const requiredFields = ['username', 'user_password', 'first_name']
             requiredFields.forEach(field => {
                 const registerAttempt = {
@@ -37,47 +38,96 @@ describe.only('user endpoints', () => {
                 .expect(400)
             })
         })
-    })
-    context('POST /users with invalid password requirements returns 400', () => {
-        const registerAttempt =  {
-        username: 'test user_name',
-        user_password: 'test password',
-        first_name: 'test full_name',
-        }
-        it('returns 404 password must contain...', () => {
-            return supertest(app)
-            .post('/api/users/')
-            .send(registerAttempt)
-            .expect(400, {error:'Password must contain one upper case, lower case, number and special character'})
+        context('POST /users password requirements', () =>{
+            const shortPassword = {
+                username: 'test',
+                user_password: 'P1!j',
+                first_name: 'name'
+            }
+            const longPassword = {
+                username: 'test1',
+                user_password: '!1k*'.repeat(72),
+                first_name: 'name'
+            }
+            const startSpacePassword = {
+                username: 'test2',
+                user_password: ' 1!Password',
+                first_name: 'name'
+            }
+            const endSpacePassword = {
+                username: 'test2',
+                user_password: '1!Password ',
+                first_name: 'name'
+            }
+            const invalidRequirements =  {
+                username: 'test user_name',
+                user_password: 'test password',
+                first_name: 'test full_name',
+                }
+            it('/POST users/ with short password returns 400', () => {
+                return supertest(app)
+                .post('/api/users/')
+                .send(shortPassword)
+                .expect(400, {error: 'Password must be longer than 8 characters'})
+            })
+            it('/POST /users returns 400 when password is too long', () => {
+                return supertest(app)
+                .post('/api/users')
+                .send(longPassword)
+                .expect(400, {error:'Password must be less than 72 characters'})
+            })
+            it('/POST users/ with space at beginner or end returns 400', () => {
+                return supertest(app)
+                .post('/api/users')
+                .send(startSpacePassword)
+                .expect(400, {error:'Password must not start or end with empty spaces'})
+            })
+            it('/POST users/ with space at beginning or end returns 400', () => {
+                return supertest(app)
+                .post('/api/users')
+                .send(endSpacePassword)
+                .expect(400, {error:'Password must not start or end with empty spaces'})
+            })
+            it('returns 404 password must contain...', () => {
+                return supertest(app)
+                .post('/api/users/')
+                .send(invalidRequirements)
+                .expect(400, {error:'Password must contain one upper case, lower case, number and special character'})
+            })
         })
     })
-    context('POST /users returns 400 when the username already exists', () => {
-        const duplicateUser = {
-            username: 'test-user-1',
-            user_password: 'Password1!',
-            first_name: 'Test',
-        }  
+    })
+    describe('duplicate username', () => {
         before('insert test users into db', () => {
-            helpers.seedUsers(db, usersArray)
-        })
-        it('returns 400 username already taken', () => {  
-            return supertest(app)
-            .post('/api/users')
-            .send(duplicateUser)
-            .expect(400, {error: 'Username already taken'})
+            return db.into('embroidery_users').insert(usersArray)
+         })
+        context('POST /users returns 400 when the username already exists', () => {
+            const duplicateUser = {
+                username:'test-user-1',
+                user_password: 'Password1!',
+                first_name: 'Test',
+            }  
+            it('returns 400 username already taken', () => {  
+                return supertest(app)
+                .post('/api/users')
+                .send(duplicateUser)
+                .expect(400, {error: 'Username already taken'})
+            })
         })
     })
-    context('POST /users posts new user into database and returns user information in json response', () => {
-        const newUser = {
-            username: 'new user',
-            user_password: 'Password!1',
-            first_name: 'amanda'
-        }
-        it('posts new user into db', () => {
-            return supertest(app)
-            .post('/api/users')
-            .send(newUser)
-            .expect(201)
+    describe ('new user registration success', () => {
+        context('POST /users posts new user into database and returns user information in json response', () => {
+            const newUser = {
+                username: 'admin',
+                user_password: 'Password!1',
+                first_name: 'amanda'
+            }
+            it('creates new user', () => {
+                return supertest(app)
+                .post('/api/users/')
+                .send(newUser)
+                .expect(201)
+            })
         })
     })
 })
