@@ -3,6 +3,7 @@ const knex = require('knex')
 const {expect} = require('chai')
 const helpers = require('./test-helpers')
 
+const testUsers = helpers.makeUsersArray()
 describe('GET Embroidery Projects endpoints', () => {
     let db
     before('make knex instance', () => {
@@ -27,6 +28,7 @@ describe('GET Embroidery Projects endpoints', () => {
           const id = 123
           return supertest(app)
           .get(`/api/projects/${id}`)
+          .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
           .expect(400, {error: 'project not found'})
       })
     })

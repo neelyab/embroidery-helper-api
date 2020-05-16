@@ -6,6 +6,7 @@ const { NODE_ENV, CLIENT_ORIGIN } = require('./config')
 const stitchesRouter = require('./stitches/stitches-router')
 const projectsRouter = require('./projects/projects-router')
 const usersRouter = require('./users/users-router')
+const authRouter = require('./auth/auth-router')
 
 const app = express()
 
@@ -23,6 +24,7 @@ app.use(cors({
 app.use('/api/stitches', stitchesRouter)
 app.use('/api/projects', projectsRouter)
 app.use('/api/users', usersRouter)
+app.use('/api/auth', authRouter)
 
 
 app.use(function errorHandler(error, req, res, next) {

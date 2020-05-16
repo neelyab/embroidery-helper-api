@@ -4,7 +4,7 @@ const config = require('../config')
 
 const AuthService = {
     getUserWithUserName(db, username){
-        db('embroidery_users').where({username}).first()
+        return db('embroidery_users').where({username}).first()
     },
     comparePasswords(password, hash){
        return bcrypt.compare(password, hash)
