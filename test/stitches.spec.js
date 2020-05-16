@@ -17,11 +17,17 @@ describe('GET Embroidery Stitches Endpoints', () => {
   before('clean table', () => {
     db('embroidery_stitches').truncate()
   })
+  beforeEach('seed users', () => {
+    const usersArray = helpers.makeUsersArray()
+   return helpers.seedUsers(db, usersArray)
+})
   afterEach('clean table', () => db.raw('TRUNCATE saved_projects, saved_stitches, embroidery_users, embroidery_stitches, embroidery_projects '))
   context('when no data is present in the tables', ()=>{
+    const usersArray = helpers.makeUsersArray()
     it('GET /api/stitches returns 200 status and empty array when there is nothing int he database', () => {
       return supertest(app)
       .get('/api/stitches/')
+      .set('Authorization', helpers.makeAuthHeader(usersArray[0]))
       .expect(200, [])
     })
   })
@@ -30,9 +36,11 @@ describe('GET Embroidery Stitches Endpoints', () => {
       const stitches = helpers.makeStitchesArray();
      return db.into('embroidery_stitches').insert(stitches)
     })
+    const usersArray = helpers.makeUsersArray()
     it('GET /api/stitches/ responds with 200 and array of stitches', ()=>{
       return supertest(app)
       .get('/api/stitches/')
+      .set('Authorization', helpers.makeAuthHeader(usersArray[0]))
       .expect(200)
       .expect(res=>{
         expect(res.body).to.be.an('array')
@@ -43,6 +51,7 @@ describe('GET Embroidery Stitches Endpoints', () => {
       const stemStitch = 'stem stitch'
       return supertest(app)
       .get('/api/stitches/')
+      .set('Authorization', helpers.makeAuthHeader(usersArray[0]))
       .query({stitch:'stem'})
       .expect(200)
       .expect(res=> {
@@ -54,6 +63,7 @@ describe('GET Embroidery Stitches Endpoints', () => {
       const id = 1
       return supertest(app)
       .get(`/api/stitches/${id}`)
+      .set('Authorization', helpers.makeAuthHeader(usersArray[0]))
       .expect(200)
       .expect(res=> {
         expect(res.body.id).to.equal(id)
@@ -63,6 +73,7 @@ describe('GET Embroidery Stitches Endpoints', () => {
       const id = 123
       return supertest(app)
       .get(`/api/stitches/${id}`)
+      .set('Authorization', helpers.makeAuthHeader(usersArray[0]))
       .expect(400, {error:'stitch not found'})
     })
   })

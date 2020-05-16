@@ -3,7 +3,7 @@ const app = require('../src/app')
 const knex = require('knex')
 const helpers = require('./test-helpers')
 
-describe.only('Authentication Endpoint', () => {
+describe('Authentication Endpoint', () => {
     let db;
     before('make connection', () => {
         db = knex({
