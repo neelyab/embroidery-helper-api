@@ -4,7 +4,7 @@ const {expect} = require('chai')
 const helpers = require('./test-helpers')
 
 
-describe('GET Saved Stitches endpoints', () => {
+describe.only('GET Saved Stitches endpoints', () => {
     let db
     before('make knex instance', () => {
       db = knex({

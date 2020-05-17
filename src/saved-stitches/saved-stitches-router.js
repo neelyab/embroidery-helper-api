@@ -28,7 +28,7 @@ savedStitchesRouter
     })
 })
 .post(checkStitchExists, (req, res) => {
-    const user_id = req.user.id
+    const user_id = req.user
     const {id} = req.params
     const stitch = id
     const savedStitch = {

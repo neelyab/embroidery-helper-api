@@ -9,7 +9,7 @@ const SavedProjectsService = {
         .innerJoin('embroidery_projects AS project', 'project.id', 'saved.project')
     },
     saveProject(db, savedProject){
-        return db.into('saved_projects').insert(savedProject)
+        return db.insert(savedProject).into('saved_projects')
     },
     getProjectById(db, user_id, id){
         return db.select('*').from('saved_projects').where('user_id', user_id).andWhere('project', id).first()

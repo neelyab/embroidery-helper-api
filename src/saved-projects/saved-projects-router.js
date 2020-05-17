@@ -28,13 +28,14 @@ savedProjectsRouter
     })
 })
 .post(checkProjectExists, (req, res) => {
-    const user_id = req.user.id
+    const user_id = req.user
     const {id} = req.params
     const project = id
     const savedProject = {
-        user_id,
-        project
+        user_id: user_id,
+        project: project
     }
+    console.log(savedProject)
     SavedProjectsService.saveProject(req.app.get('db'), savedProject)
     .then(() => {
         return res.status(201).send(`Project with id: ${project} saved`)
