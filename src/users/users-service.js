@@ -10,6 +10,11 @@ const UsersService = {
       .first()
       .then(user => !!user)
   },
+  getUser(db, username){
+    return db('embroidery_users')
+    .where({username})
+    .first()
+  },
   insertUser(db, newUser) {
     return db
       .insert(newUser)
