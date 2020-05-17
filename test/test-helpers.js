@@ -21,6 +21,30 @@ function makeStitchesArray() {
 
 ]
 }
+function makeSavedStitchesArray() {
+  return [
+    {
+      user_id: 1,
+      stitch: 1
+    },
+    {
+      user_id: 1,
+      stitch: 2
+    },
+  ]
+}
+function makeSavedProjectsArray() {
+  return [
+    {
+      user_id: 1,
+      project: 1
+    },
+    {
+      user_id: 1,
+      project: 2
+    },
+  ]
+}
 
 function makeProjectsArray() {
     return [
@@ -92,12 +116,22 @@ function makeUsersArray() {
            algorithm: 'HS256',
          })
        return `Bearer ${token}`
-     }
+  }
+  function seedSavedStitches(db, stitches){
+    return db.into('saved_stitches').insert(stitches)
+  }
+  function seedEmbroideryStitches(db, stitches) {
+    return db.into('embroidery_stitches').insert(stitches)
+  }
 
 module.exports = {
     makeProjectsArray,
     makeStitchesArray,
     makeUsersArray,
     seedUsers,
-    makeAuthHeader
+    seedSavedStitches,
+    seedEmbroideryStitches,
+    makeAuthHeader,
+    makeSavedStitchesArray,
+    makeSavedProjectsArray
 }
