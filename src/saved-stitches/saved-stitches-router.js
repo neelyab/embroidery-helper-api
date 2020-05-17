@@ -9,7 +9,6 @@ savedStitchesRouter
 .all(requireAuth)
 .get((req, res) => {
     const user = req.user.id
-    console.log(user)
    return SavedStitchesService.getAllStitches(req.app.get('db'), user)
     .then(stitches => {
         return res.status(200).json(stitches)

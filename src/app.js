@@ -8,6 +8,7 @@ const projectsRouter = require('./projects/projects-router')
 const usersRouter = require('./users/users-router')
 const authRouter = require('./auth/auth-router')
 const savedStitchesRouter = require('./saved-stitches/saved-stitches-router')
+const savedProjectsRouter = require('./saved-projects/saved-projects-router')
 
 const app = express()
 
@@ -27,6 +28,7 @@ app.use('/api/projects', projectsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/saved_stitches', savedStitchesRouter)
+app.use('/api/saved_projects', savedProjectsRouter)
 
 
 app.use(function errorHandler(error, req, res, next) {

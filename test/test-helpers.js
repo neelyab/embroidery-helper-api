@@ -123,6 +123,13 @@ function makeUsersArray() {
   function seedEmbroideryStitches(db, stitches) {
     return db.into('embroidery_stitches').insert(stitches)
   }
+  function seedSavedProjects(db, projects){
+    return db.into('saved_projects').insert(projects)
+  }
+  function seedEmbroideryProjects(db, projects) {
+    return db.into('embroidery_projects').insert(projects)
+  }
+
 
 module.exports = {
     makeProjectsArray,
@@ -130,7 +137,9 @@ module.exports = {
     makeUsersArray,
     seedUsers,
     seedSavedStitches,
+    seedSavedProjects,
     seedEmbroideryStitches,
+    seedEmbroideryProjects,
     makeAuthHeader,
     makeSavedStitchesArray,
     makeSavedProjectsArray
