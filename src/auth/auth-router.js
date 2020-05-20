@@ -4,7 +4,7 @@ const authRouter = express.Router()
 const jsonBodyParser = express.json()
 
 authRouter
-.post('/login', jsonBodyParser, (req, res) => {
+.post('/', jsonBodyParser, (req, res) => {
     const {username, password} = req.body
     const loginUser = {
         username,

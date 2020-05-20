@@ -26,7 +26,7 @@ app.use(helmet())
 app.use('/api/stitches', stitchesRouter)
 app.use('/api/projects', projectsRouter)
 app.use('/api/users', usersRouter)
-app.use('/api/auth', authRouter)
+app.use('/api/auth/login', authRouter)
 app.use('/api/saved_stitches', savedStitchesRouter)
 app.use('/api/saved_projects', savedProjectsRouter)
 
