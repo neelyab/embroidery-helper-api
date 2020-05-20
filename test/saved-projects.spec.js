@@ -4,7 +4,7 @@ const {expect} = require('chai')
 const helpers = require('./test-helpers')
 
 
-describe.only('GET Saved Projects endpoints', () => {
+describe('GET Saved Projects endpoints', () => {
     let db
     before('make knex instance', () => {
       db = knex({
@@ -37,7 +37,7 @@ describe.only('GET Saved Projects endpoints', () => {
         const expectedArray =     [
             {
              image_url: "www.imageurl.com",
-             project: 1,
+             id: 1,
              project_description: "description of the project",
              project_name: "lemon citrus",
              stitches: "back stitch, stem stitch, chain stitch",
@@ -45,7 +45,7 @@ describe.only('GET Saved Projects endpoints', () => {
             },
             {
              image_url: "www.imageurl.com",
-             project: 2,
+             id: 2,
              project_description: "description of the project",
              project_name: "rainbow pattern",
              stitches: "french knot, stem stitch, chain stitch",
@@ -73,7 +73,7 @@ describe.only('GET Saved Projects endpoints', () => {
         const id = 1
         const expectedSavedProject =  {
             image_url: "www.imageurl.com",
-            project: 1,
+            id: 1,
             project_description: "description of the project",
             project_name: "lemon citrus",
             stitches: "back stitch, stem stitch, chain stitch",
@@ -101,7 +101,7 @@ describe.only('GET Saved Projects endpoints', () => {
         const id = projectsArray[0].id
         const expectedResponse = [{
             image_url: "www.imageurl.com",
-            project: 1,
+            id: 1,
             project_description: "description of the project",
             project_name: "lemon citrus",
             stitches: "back stitch, stem stitch, chain stitch",

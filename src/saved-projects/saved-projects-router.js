@@ -21,7 +21,7 @@ savedProjectsRouter
 .all(requireAuth)
 .get(checkProjectIsSaved, (req, res) => {
     const user_id = req.user
-    const project = req.project.project
+    const project = req.project.id
     SavedProjectsService.getProjectDetailsById(req.app.get('db'), user_id, project)
     .then(project => {
         res.status(200).json(project)
@@ -30,20 +30,18 @@ savedProjectsRouter
 .post(checkProjectExists, (req, res) => {
     const user_id = req.user
     const {id} = req.params
-    const project = id
     const savedProject = {
         user_id: user_id,
-        project: project
+        id: id
     }
-    console.log(savedProject)
     SavedProjectsService.saveProject(req.app.get('db'), savedProject)
     .then(() => {
-        return res.status(201).send(`Project with id: ${project} saved`)
+        return res.status(201).send(`Project with id: ${id} saved`)
     })
 })
 .delete(checkProjectIsSaved, (req, res) => {
     const user_id = req.user
-    const project = req.project.project
+    const project = req.project.id
     SavedProjectsService.deleteProject(req.app.get('db'), user_id, project)
     .then(()=>{
         return res.status(200).send(`Project with id: ${project} deleted`)

@@ -21,7 +21,7 @@ savedStitchesRouter
 .all(requireAuth)
 .get(checkStitchIsSaved, (req, res) => {
     const user_id = req.user
-    const stitch = req.stitch.stitch
+    const stitch = req.stitch.id
     SavedStitchesService.getStitchDetailsById(req.app.get('db'), user_id, stitch)
     .then(stitch => {
         res.status(200).json(stitch)
@@ -30,22 +30,21 @@ savedStitchesRouter
 .post(checkStitchExists, (req, res) => {
     const user_id = req.user
     const {id} = req.params
-    const stitch = id
     const savedStitch = {
         user_id,
-        stitch
+        id
     }
     SavedStitchesService.saveStitch(req.app.get('db'), savedStitch)
     .then(() => {
-        return res.status(201).send(`Stitch with id: ${stitch} saved`)
+        return res.status(201).send(`Stitch with id: ${id} saved`)
     })
 })
 .delete(checkStitchIsSaved, (req, res) => {
     const user_id = req.user
-    const stitch = req.stitch.stitch
-    SavedStitchesService.deleteStitch(req.app.get('db'), user_id, stitch)
+    const id = req.stitch.id
+    SavedStitchesService.deleteStitch(req.app.get('db'), user_id, id)
     .then(()=>{
-        return res.status(200).send(`Stitch with id: ${stitch} deleted`)
+        return res.status(200).send(`Stitch with id: ${id} deleted`)
     })
 })
 

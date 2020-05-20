@@ -4,7 +4,7 @@ const {expect} = require('chai')
 const helpers = require('./test-helpers')
 
 
-describe.only('GET Saved Stitches endpoints', () => {
+describe('GET Saved Stitches endpoints', () => {
     let db
     before('make knex instance', () => {
       db = knex({
@@ -36,7 +36,7 @@ describe.only('GET Saved Stitches endpoints', () => {
         const usersArray = helpers.makeUsersArray()
         const expectedSavedStitch = {
             user_id: 1,
-            stitch: 1,
+            id: 1,
             stitch_name: "back stitch",
             stitch_description: "instructions to make the stitch",
             image_url: "www.google.com"
@@ -82,7 +82,7 @@ describe.only('GET Saved Stitches endpoints', () => {
         const id = stitchesArray[0].id
         const expectedResponse = [{
             user_id:1,
-            stitch:1,
+            id:1,
             stitch_name:"back stitch",
             stitch_description:"instructions to make the stitch",
             image_url:"www.google.com"

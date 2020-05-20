@@ -25,11 +25,11 @@ function makeSavedStitchesArray() {
   return [
     {
       user_id: 1,
-      stitch: 1
+      id: 1
     },
     {
       user_id: 1,
-      stitch: 2
+      id: 2
     },
   ]
 }
@@ -37,11 +37,11 @@ function makeSavedProjectsArray() {
   return [
     {
       user_id: 1,
-      project: 1
+      id: 1
     },
     {
       user_id: 1,
-      project: 2
+      id: 2
     },
   ]
 }
