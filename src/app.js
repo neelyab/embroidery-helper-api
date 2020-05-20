@@ -17,8 +17,9 @@ const morganOption = (NODE_ENV === 'production')
   : 'common';
 
 app.use(morgan(morganOption))
-app.use(helmet())
 app.use(cors())
+app.use(helmet())
+
 
 app.use('/api/stitches', stitchesRouter)
 app.use('/api/projects', projectsRouter)
