@@ -6,4 +6,3 @@ module.exports = {
     JWT_EXPIRY: process.env.JWT_EXPIRY,
     CLIENT_ORIGIN: 'https://embroidery-helper-e1ucqqsi2.now.sh'
 }
-  }
