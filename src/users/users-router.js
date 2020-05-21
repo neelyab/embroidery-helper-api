@@ -30,7 +30,7 @@ usersRouter
         return UsersService.hashPassword(user_password)
         .then(hashedPassword => {
             const newUser = {
-                         username,
+                         username: username.toLowerCase(),
                          user_password: hashedPassword,
                          first_name,
                          date_created: 'now()',
