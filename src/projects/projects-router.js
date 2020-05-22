@@ -9,8 +9,10 @@ projectsRouter
 .get((req, res, next) => {
     const stitch = req.query.stitch
     if(stitch){
+        console.log(stitch)
         ProjectsService.getProjectByStitch(req.app.get('db'), stitch)
         .then(projectWithStitch => {
+            console.log(projectWithStitch)
             return res.status(200).json(projectWithStitch)
         })
     }
