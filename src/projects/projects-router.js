@@ -15,11 +15,12 @@ projectsRouter
             console.log(projects)
             return res.status(200).json(projects)
         })
-    }
+    } else {
     ProjectsService.getAllProjects(req.app.get('db'))
     .then(projects=>{
         return res.status(200).json(projects)
     })
+    }
 })
 
 projectsRouter
