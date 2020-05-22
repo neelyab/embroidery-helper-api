@@ -13,7 +13,7 @@ projectsRouter
         ProjectsService.getProjectByStitch(req.app.get('db'), stitch)
         .then(projects=>{
             console.log(projects)
-            return res.status(200).json(projects)
+            return res.status(200).json(projects).end()
         })
     } else {
     ProjectsService.getAllProjects(req.app.get('db'))
