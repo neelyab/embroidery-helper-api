@@ -3,7 +3,7 @@ const SavedProjectsService = {
     getAllProjects(db, user_id){
         return db.from('saved_projects AS saved')
         .select('saved.user_id')
-        .distinct('saved.id', 'project.project_name', 'project.project_description', 'project.image_url', 'project.stitches')
+        .distinct('saved.id', 'project.project_name', 'project.project_description', 'project.image_url', 'project.stitches', 'project.project_url')
         .where('saved.user_id', user_id)
         .leftJoin('embroidery_users AS user', 'saved.user_id', 'user.id')
         .innerJoin('embroidery_projects AS project', 'project.id', 'saved.id')
