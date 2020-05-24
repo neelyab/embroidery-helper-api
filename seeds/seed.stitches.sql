@@ -1,6 +1,6 @@
 INSERT INTO embroidery_stitches (stitch_name, image_url, stitch_description)
 VALUES 
-    ('satin, stitch', 'https://i.imgur.com/TF01BWC.png', 'Straight stitches made beside one another, typically used to fill in an area or shape with solid color.'),
+    ('satin stitch', 'https://i.imgur.com/TF01BWC.png', 'Straight stitches made beside one another, typically used to fill in an area or shape with solid color.'),
     ('split stitch', 'https://i.imgur.com/THJvmkO.png', 'Start with a straight stitch. Come up through the stitch you just made, and make another straight stitch. Continue making stitches, splitting the thread as you go along.'),
     ('short and long stitch', 'https://i.imgur.com/acoFgC7.png', 'This stitch is usually used to blend colors together, used commonly in thread painting. A series of short and long stitches are used to combine two or more colors together. This is best done with a gradient of colors, dark to light, or light to dark.'),
     ('chain stitch', 'https://i.imgur.com/PS1RC0q.png', 'Bring the thread through the fabric and then back down the same hole Pull partially through until a loop forms. Bring your needle through in the loop and pull snug. Continue making a chain.'),

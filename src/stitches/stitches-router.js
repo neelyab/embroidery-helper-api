@@ -10,7 +10,6 @@ stitchesRouter
 .all(requireAuth)
 .get((req, res, next) => {
     const stitch = req.query.stitch
-    console.log(stitch)
     if (stitch) {
         StitchesService.getByName(req.app.get('db'), stitch)
         .then(stitch=>{
