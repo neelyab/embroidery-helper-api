@@ -1,26 +1,60 @@
-# Express Boilerplate!
+# Embroidery Helper API
+REST API that has embroidery stitches and embroidery projects. 
 
-This is a boilerplate project used for starting new projects!
+## Base URL
+https://secure-woodland-74305.herokuapp.com
 
-## Set up
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+## Response
+* JSON
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+## Authentication
+* Requires JWT token
 
-## Scripts
+## Create New User
+* POST /api/users
+* Request Body must include: username, first_name, user_password 
 
-Start the application `npm start`
+## Log In
+* POST /api/auth/login
+* Request Body must include username, user_password
 
-Start nodemon for the application `npm run dev`
+## Stitches
 
-Run the tests `npm test`
+### GET stitches
+* /api/stitches to get all stitches
+* /api/stitches/:id to get a stitch by it's id
+* optional query to find specific stitch: `stitch=[text]`
 
-## Deploying
+### GET projects 
+* /api/projects to get all projects
+* /api/projects/:id to get a project by id
+* optional query to find specific project by stitches they require: `stitch=[text]`
 
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+## User's Saved Stitches
+
+### GET user's saved stitches
+* /api/saved_stitches to get all saved stitches
+
+### GET saved stitch by id
+* /api/saved_stitches/:id
+
+### DELETE user's saved stitch
+* /api/saved_stitches/:id
+
+### POST save a stitch to user
+* /api/saved_stitches/:id
+
+## User's Saved Projects 
+
+### GET user's saved projects
+* /api/saved_projects to get all saved projects
+
+### GET user's saved project by id
+* /api/saved_projects/:id
+
+### DELETE user's saved project
+* /api/saved_projects/:id
+
+### POST save a project to user
+* /api/saved_projects/:id
