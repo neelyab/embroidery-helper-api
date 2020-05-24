@@ -11,14 +11,7 @@ https://secure-woodland-74305.herokuapp.com
 ## Authentication
 * Requires JWT token
 
-Request Body example 
-`{         
-    method: 'DELETE',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': 'Bearer [token]'
-            }
-})`
+Each request must include  `content-type: application/json` and `Authorization: Bearer [token]`
 
 ## Create New User
 * POST /api/users
