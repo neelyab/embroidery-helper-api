@@ -1,6 +1,28 @@
 # Embroidery Helper API
 REST API that has embroidery stitches and embroidery projects. 
 
+## About
+The hand embroidery api allows users to create an account, search for embroidery stitches and projects to learn, as well as save and delete embroidery stitches and projects to their account. 
+
+## Live Link
+https://embroidery-helper.now.sh/
+
+
+## Technologies Used
+* Javascript
+* Node.js
+* Express
+* PostgreSQL
+* RESTful API
+
+## Screenshots
+
+![ home screen](./src/img/home-screen.jpg)
+
+![ search results screen](./src/img/search-results.jpg)
+
+![ saved projects and stitches screen](./src/img/saved-projects-and-stitches.jpg)
+
 ## Base URL
 https://secure-woodland-74305.herokuapp.com
 
