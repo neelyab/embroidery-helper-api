@@ -1,5 +1,4 @@
 # Embroidery Helper API
-REST API that has embroidery stitches and embroidery projects. 
 
 ## About
 The hand embroidery api allows users to create an account, search for embroidery stitches and projects to learn, as well as save and delete embroidery stitches and projects to their account. 
