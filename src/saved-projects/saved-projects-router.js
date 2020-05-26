@@ -28,12 +28,14 @@ savedProjectsRouter
     })
 })
 .post(checkProjectExists, (req, res) => {
+    // check if project exists in the embroidery_projects table
     const user_id = req.user
     const {id} = req.params
     const savedProject = {
         user_id: user_id,
         id: id
     }
+    // Save project
     SavedProjectsService.saveProject(req.app.get('db'), savedProject)
     .then(() => {
         return res.status(201).send(`Project with id: ${id} saved`)

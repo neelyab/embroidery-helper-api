@@ -39,6 +39,7 @@ describe('GET Saved Projects endpoints', () => {
              image_url: "www.imageurl.com",
              id: 1,
              project_description: "description of the project",
+             project_url: "www.projecturl.com",
              project_name: "lemon citrus",
              stitches: "back stitch, stem stitch, chain stitch",
              user_id: 1
@@ -47,6 +48,7 @@ describe('GET Saved Projects endpoints', () => {
              image_url: "www.imageurl.com",
              id: 2,
              project_description: "description of the project",
+             project_url: "www.projecturl.com",
              project_name: "rainbow pattern",
              stitches: "french knot, stem stitch, chain stitch",
             user_id: 1

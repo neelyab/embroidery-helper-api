@@ -9,18 +9,20 @@ projectsRouter
 .get((req, res, next) => {
     const stitch = req.query.stitch
     if(stitch){
+        // if stitch query is present, get projects matching the query
         ProjectsService.getProjectByStitch(req.app.get('db'), stitch)
         .then(projects=>{
             return res.status(200).json(projects).end()
         })
     } else {
+        // if stitch is not present, get all projects
     ProjectsService.getAllProjects(req.app.get('db'))
     .then(projects=>{
         return res.status(200).json(projects)
     })
     }
 })
-
+// get project by id
 projectsRouter
 .route('/:id')
 .all(requireAuth)

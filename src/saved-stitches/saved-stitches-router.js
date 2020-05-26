@@ -28,6 +28,7 @@ savedStitchesRouter
     })
 })
 .post(checkStitchExists, (req, res) => {
+    // check if stitch exists in the embroidery_stitches table
     const user_id = req.user
     const {id} = req.params
     const savedStitch = {
@@ -40,6 +41,7 @@ savedStitchesRouter
     })
 })
 .delete(checkStitchIsSaved, (req, res) => {
+    // check if stitch is saved before deleting it
     const user_id = req.user
     const id = req.stitch.id
     SavedStitchesService.deleteStitch(req.app.get('db'), user_id, id)
