@@ -1,7 +1,7 @@
 # Embroidery Helper API
 
 ## About
-The hand embroidery api allows users to create an account, search for embroidery stitches and projects to learn, as well as save and delete embroidery stitches and projects to their account. 
+This hand embroidery api allows users to create an account, search for embroidery stitches and projects to learn, as well as save and delete embroidery stitches and projects to their account. 
 
 ## Live Link
 https://embroidery-helper.now.sh/
